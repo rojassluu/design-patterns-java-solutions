@@ -109,3 +109,56 @@ classDiagram
     Manual --> InteriorStyle
     Manual --> AutoType
 
+```` 
+---
+
+## 2) Sistema de Notificaciones (Bridge)
+
+**Tipo de patrón:** Estructural  
+**Patrón seleccionado:** **Bridge**  
+**Justificación:** El patrón Bridge se aplica en este escenario para desvincular la abstracción del tipo de notificación de su implementación en la plataforma de envío. Esto permite que ambas evolucionen de manera independiente.
+
+**Diagrama de clases:**
+```mermaid
+classDiagram
+
+    class Notificacion {
+        <<Abstract>>
+        #plataforma: PlataformaNotificacion
+        +enviar(mensaje)
+    }
+    note for Notificacion "Contiene la referencia (el puente) a la implementación."
+
+    class NotificacionMensaje {
+      +enviar(mensaje)
+    }
+    class NotificacionAlerta {
+      +enviar(mensaje)
+    }
+
+    class PlataformaNotificacion {
+        <<Interface>>
+        +mostrar(titulo, mensaje)
+    }
+    note for PlataformaNotificacion "Define la interfaz para las plataformas."
+
+    class PlataformaWeb {
+      +mostrar(titulo, mensaje)
+    }
+    class PlataformaMovil {
+      +mostrar(titulo, mensaje)
+    }
+    class PlataformaEmail {
+      +mostrar(titulo, mensaje)
+    }
+
+    Notificacion <|-- NotificacionMensaje
+    Notificacion <|-- NotificacionAlerta
+
+    PlataformaNotificacion <|.. PlataformaWeb
+    PlataformaNotificacion <|.. PlataformaMovil
+    PlataformaNotificacion <|.. PlataformaEmail
+
+    Notificacion o--> PlataformaNotificacion : "puente"
+
+```` 
