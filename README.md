@@ -162,3 +162,52 @@ classDiagram
     Notificacion o--> PlataformaNotificacion : "puente"
 
 ```` 
+
+---
+
+## 2) Chat grupal (Mediator)
+
+**Tipo de patrón:** De comportamiento
+**Patrón seleccionado:** **Mediator**  
+**Justificación:** Este patrón encapsula cómo se comunican varios objetos entre sí. En lugar de un objeto de hablar directamente con los demás, este habla a través de un mediador, que se encarga de transmitir el mensaje.
+
+**Diagrama de clases:**
+```mermaid
+classDiagram
+
+    class ChatMediator {
+        <<Interface>>
+        +sendMessage(String message, User transmitter) void
+        +addUser(User user) void
+    }
+
+    class ChatRoom {
+        -users: List~User~
+        +sendMessage(String message, User transmitter) void
+        +addUser(User user) void
+    }
+
+    class User {
+        #mediator: ChatMediator
+        #name: String
+        +send(String message) void
+        +receive(String message) void
+    }
+
+    class CustomerUser {
+        +send(String message) void
+        +receive(String message) void
+    }
+
+    class EmployeeUser {
+        +send(String message) void
+        +receive(String message) void
+    }
+
+    ChatMediator <|.. ChatRoom
+    User --> ChatMediator 
+    ChatRoom *-- User 
+    User <|-- CustomerUser
+    User <|-- EmployeeUser
+
+```` 
