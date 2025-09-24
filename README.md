@@ -165,9 +165,9 @@ classDiagram
 
 ---
 
-## 2) Chat grupal (Mediator)
+## 2) Chat Grupal (Mediator)
 
-**Tipo de patrón:** De comportamiento
+**Tipo de patrón:** De comportamiento  
 **Patrón seleccionado:** **Mediator**  
 **Justificación:** Este patrón encapsula cómo se comunican varios objetos entre sí. En lugar de un objeto de hablar directamente con los demás, este habla a través de un mediador, que se encarga de transmitir el mensaje.
 
