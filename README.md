@@ -165,7 +165,7 @@ classDiagram
 
 ---
 
-## 2) Chat Grupal (Mediator)
+## 3) Chat Grupal (Mediator)
 
 **Tipo de patrón:** De comportamiento  
 **Patrón seleccionado:** **Mediator**  
